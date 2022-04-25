@@ -1,0 +1,102 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Template Polo, html template">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ورود به حساب کاربری</title>
+
+    <link href="{% static 'css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/rtl.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="body-inner">
+
+        <section class="fullscreen" data-bg-parallax="{% static 'images/pages/1.jpg' %}">
+            <div class="container">
+                <div>
+                    <div class="text-center m-b-30">
+                        <a href="{% url 'landing-home' %}" class="logo">
+                            <h3 style='color:white;'>چاپ آنلاین</h3>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 center p-50 background-white b-r-6">
+                            <h3>وارد حساب کاربری خود شوید</h3>
+                            <form method="POST">{% csrf_token %}
+                                <div class="form-group">
+                                    <label class="sr-only">نام کاربری یا ایمیل یا شماره همراه</label>
+                                    {{ form.username|attr:"placeholder:نام کاربری/شماره همراه/ایمیل"|attr:"class:form-control"}}
+                                </div>
+                                <div class="form-group m-b-5">
+                                    <label class="sr-only">رمز عبور</label>
+                                    {{ form.password|attr:"placeholder:رمز عبور"|attr:"class:form-control"|attr:"type:password"}}
+                                </div>
+                                <div class="form-group form-inline text-left">
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="checkbox"><small class="m-r-10"> مرا به خاطر بسپار</small>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="text-left form-group">
+                                    <button type="submit" class="btn">ورود</button>
+                                </div>
+                            </form>
+                            <p class="small">حساب کاربری ندارید؟ <a href="{% url 'register-not-auth' %}">ثبت نام حساب کاربری جدید</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+                            {% if not user.profile.use_invite_code %}
+                                <div id="modalSubscriptionForm" class="modal modal-auto-open" data-delay="3000"
+                                    style="background: url('{% static 'images/newsletter-bg.jpg' %}') no-repeat; background-size: cover; background-position: center top;  max-width: 700px; min-height:380px">
+                                    <div style="max-width:350px;" class="text-light p-t-30">
+                                        <h2 class="m-b-0">ثبت کد معرف</h2>
+                                        <h5>اگر از طرف دوستانتان معرفی شدید کد معرف وی را ثبت نمایید</h5>
+                                        <div class="widget widget-newsletter m-b-10">
+                                            <form class="widget-subscribe-form"
+                                                action="{% url 'invite-code' %}" role="form" method="get">
+                                                {% csrf_token %}
+                                                <div class="input-group">
+                                                    <input aria-required="true" name="code"
+                                                        class="form-control required m-b-10"
+                                                        placeholder="کد معرف خود را وارد کنید" type="text"><button
+                                                        type="submit" id="widget-subscribe-submit-button"
+                                                        class="btn btn-danger m-b-10">ثبت</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <small><em><a href="#" class="modal-close">نه متشکرم، می خواهم این پنجره را
+                                                    ببندم.</a></em></small>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+
+    <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-switch/bootstrap-switch.min.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+{% include "messages.html" %}
+
+</html>

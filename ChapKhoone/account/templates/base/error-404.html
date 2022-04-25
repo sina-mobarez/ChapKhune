@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>صفحه یافت نشد</title>
+	<!-- start css and style -->
+	<link rel="stylesheet" href="{% static 'page-404/css/bootstrap-rtl.css' %}">
+	<link type="text/css" href="{% static 'page-404/css/style.css' %}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-xs-12">
+			<div class="wrapper">
+				<!-- start text box -->
+				<div class="TextHolder">
+					<div class="Texts">
+						<div class="FourOhFour">404</div>
+						<div class="Maybe">اوه ... شاید ...<span>مشکلی پیش اومده باشه</span></div>
+						<div class="Bad">متاسفانه صفحه مورد نظر پیدا نشد !</div>
+						<a href="{% url 'landing-home' %}"><div class="Return">بازگشت به صفحه نخست</div></a>
+					</div>
+				</div>
+				<!-- end text box -->
+
+				<!-- start monster details -->
+				<div class="Body">
+					<div class="LeftEye"></div>
+					<div class="RightEye"></div>
+					<div class="EyeShadows"></div>
+					<div class="Mouth"></div>
+					<div class="MouthShadows"></div>
+					<div class="Theet"></div>
+					<div class="BodyTexture"></div>
+				</div>
+				<div class="Horns">
+					<div class="HornsExtras"></div>
+				</div>
+				<div class="LeftHand"></div>
+				<div class="RightHand"></div>
+				<!-- end monster details -->
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!-- start java script -->
+	<script src="{% static 'page-404/js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'page-404/js/bootstrap.min.js' %}"></script>
+	<script  src="{% static 'page-404/js/scripts.js' %}"></script>
+</body><!-- This template has been downloaded from Webrubik.com -->
+</html>

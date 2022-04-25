@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Template Polo, html template">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %}{% endblock title %}</title>
+
+    <link href="{% static 'css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/rtl.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="body-inner">
+
+        <div id="topbar" class="topbar-fullwidth d-none d-lg-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="top-menu">
+                            <li><a href="#">تلفن : 02155667788</a></li>
+                            <li><a href="#">ایمیل : contact@example-media.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 d-none d-sm-block">
+                        <div class="social-icons social-icons-colored-hover">
+                            <ul>
+                                <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li class="social-google"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
+                                <li class="social-linkedin"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                <li class="social-dribbble"><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                                <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <header id="header" data-fullwidth="true">
+            <div class="header-inner">
+                <div class="container">
+
+                    <div id="logo">
+                        <a href="{% url 'landing-home' %}">
+                            <span class="logo-default">چاپ انلاین</span>
+                            <span class="logo-dark">چاپ انلاین</span>
+                        </a>
+                    </div>
+
+
+                    <div id="search"><a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i
+                                class="icon-x"></i></a>
+                        <form class="search-form" action="{% url 'search' %}" method="get">{% csrf_token %}
+                            <input class="form-control" name="searched" type="text" placeholder="جستجو کنید ..." />
+                            <span class="text-muted">جستجو را شروع کنید و دکمه "Enter" را بزنید یا برای خروج دکمه "ESC"
+                                را بزنید</span>
+                        </form>
+                    </div>
+
+
+                    <div class="header-extras">
+                        <ul>
+                            <li>
+                                <a id="btn-search" href="#"> <i class="icon-search"></i></a>
+                            </li>
+                            <li>
+                                <div class="p-dropdown">
+                                    <a href="#"><i class="icon-globe"></i><span>فا</span></a>
+                                    <ul class="p-dropdown-content">
+                                        <li><a href="#">فارسی</a></li>
+                                        <li><a href="#">انگلیسی</a></li>
+                                        <li><a href="#">فرانسوی</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div id="mainMenu-trigger">
+                        <a class="lines-button x"><span class="lines"></span></a>
+                    </div>
+
+
+                    <div id="mainMenu">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                    <li><a href="{% url 'landing-home' %}">خانه</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'logout' %}">خارج شدن از حساب</a></li>
+                                    <li><a href="{% url 'logout' %}">سبد خرید</a></li>
+                                    {% else %}
+                                    <li class="dropdown"><a href="#">حساب کاربری</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{% url 'login-not-auth' %}">ورود به حساب کاربری</a></li>
+                                            <li><a href="{% url 'register-not-auth' %}">ثبت نام در سایت</a></li>
+                                        </ul>
+                                    </li>
+                                    {% endif %}
+                                    <li class="dropdown"><a href="#">خدمات</a>
+                                      <ul class="dropdown-menu">
+                                          <li><a href="{% url 'stamp-list' %}">سفارش مهر</a></li>
+                                          <li><a href="{% url 'register-not-auth' %}">چاپ اعلامیه ترحیم</a></li>
+                                          <li class="dropdown-submenu"><a href="#">چاب بنر خیر مقدم</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="menu-outline.html">بنر خیر مقدم کربلا</a></li>
+                                                <li><a href="menu-outline-dark.html">بنر خیر مقدم مکه</a></li>
+                                    
+                                            </ul>
+                                        </li>
+                                          
+                                      </ul>
+                                  </li>
+                                    <li><a href="{% url 'about-us' %}">درباره ما</a></li>
+                                    <li><a href="{% url 'contact-us' %}">تماس با ما</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+
+        {% block content %}{% endblock content %}
+
+
+        <footer id="footer">
+          <div class="footer-content">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="icon-box effect small clean">
+                              <div class="icon">
+                                  <a href="#"><i class="icon-clock"></i></a>
+                              </div>
+                              <h3>روزهای کاری</h3>
+                              <p><strong>شنبه - چهارشنبه</strong>
+                                  <br>10:00 صبح - 11:00 عصر</p>
+                              <p><strong>پنج شنبه - جمعه</strong>
+                                  <br>10:00 صبح - 04:00 عصر</p>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="icon-box effect small clean">
+                              <div class="icon">
+                                  <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+                              </div>
+                              <h3>موقعیت مکانی شرکت</h3>
+                              <p><strong>آدرس شرکت : </strong>
+                                  <br> تهران، میدان آزادی
+                                  <br> خیابان آزادی، پلاک 7
+                                  <br>
+                                  <br>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="icon-box effect small clean">
+                              <div class="icon">
+                                  <a href="#"><i class="icon-phone"></i></a>
+                              </div>
+                              <h3>شماره تماس شرکت</h3>
+                              <p><strong>تلفن : </strong>
+                                  <br> 02155667788
+                                  <br> 02166554433
+                                  <br>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="copyright-content">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-6">
+
+                          <div class="social-icons social-icons-colored float-left">
+                              <ul>
+                                  <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                                  <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                  <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                  <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
+                                  <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                  <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                  <li class="social-gplus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                              </ul>
+                          </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="copyright-text text-center">&copy; کپی رایت 2023 <a href='bamaitc.com/'>bamaitc</a> - تمامی حقوق محفوظ است
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </footer>
+
+
+    </div>
+
+    <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+{% include "messages.html" %}
+
+</html>

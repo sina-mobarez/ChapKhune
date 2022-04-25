@@ -1,0 +1,160 @@
+{% include "base-dashboard.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% if stamp %}
+
+
+<section id="page-content">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 p-t-10 m-b-20">
+                <h3 class="m-b-20">{{ stamp.name }}</h3>
+                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
+                    لورم ایپسوم متن ساختگی با تولید سادگی.</p>
+            </div>
+
+            <div class="sidebar sticky-sidebar col-lg-3">
+
+
+                <div class="widget  widget-tags">
+                    <h4 class="widget-title">دسته بندی</h4>
+                    <div class="tags">
+                        {% for item in category_all %}
+                        <a href="{{ item.get_absolute_url }}">{{ item }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content col-lg-9">
+
+                <div class="row">
+
+                    {% for item in stamp.stamp_set.all %}
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <img class="card-img-top" src="/media/{{ item.image }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.name }}</h5>
+                                <p class="card-text">{{ item.description }}
+                                </p>
+                                <a href="{% url 'stamp-detail' slug=item.slug %}" class="btn btn-primary">خرید</a>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">قیمت: {{ item.price }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                    {% else %}
+
+                    <section class="m-t-80 p-b-150">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="page-error-404 text-center">500</div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="text-left">
+                                        <h1 class="text-medium">خطای سرور!</h1>
+                                        <p class="lead">متأسفیم، مشکلی در سرور ما وجود دارد.</p>
+                                        <div class="seperator m-t-20 m-b-20"></div><button onclick="window.location.reload()"
+                                            class="btn" type="button">بارگذاری مجدد صفحه</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<footer id="footer">
+    <div class="footer-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="icon-clock"></i></a>
+                        </div>
+                        <h3>روزهای کاری</h3>
+                        <p><strong>شنبه - چهارشنبه</strong>
+                            <br>10:00 صبح - 11:00 عصر</p>
+                        <p><strong>پنج شنبه - جمعه</strong>
+                            <br>10:00 صبح - 04:00 عصر</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+                        </div>
+                        <h3>موقعیت مکانی شرکت</h3>
+                        <p><strong>آدرس شرکت : </strong>
+                            <br> تهران، میدان آزادی
+                            <br> خیابان آزادی، پلاک 7
+                            <br>
+                            <br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="icon-phone"></i></a>
+                        </div>
+                        <h3>شماره تماس شرکت</h3>
+                        <p><strong>تلفن : </strong>
+                            <br> 02155667788
+                            <br> 02166554433
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="social-icons social-icons-colored float-left">
+                        <ul>
+                            <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
+                            <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                            <li class="social-gplus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="copyright-text text-center">&copy; کپی رایت 2023 <a href='bamaitc.com/'>bamaitc</a> - تمامی حقوق محفوظ است
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+{% endblock content %}

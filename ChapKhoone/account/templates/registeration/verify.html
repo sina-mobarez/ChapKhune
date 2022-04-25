@@ -1,0 +1,75 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Template Polo, html template">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>تایید شماره همراه</title>
+
+    <link href="{% static 'css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/rtl.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="body-inner">
+
+        <section class="fullscreen" data-bg-parallax="{% static 'images/pages/1.jpg' %}">
+            <div class="container">
+                <div>
+                    <div class="text-center m-b-30">
+                        <a href="{% url 'landing-home' %}" class="logo">
+                            <h3 style='color:white;'>چاپ آنلاین</h3>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 center p-50 background-white b-r-6">
+                            <h3>احراز هویت</h3>
+                            <form method="POST">{% csrf_token %}
+                                <div class="form-group">
+                                    <label class="sr-only">کد تایید</label>
+                                    {{ form.otp_code|attr:"placeholder:کد تایید"|attr:"class:form-control" }}
+                                </div>
+                                <div class="text-left form-group">
+                                    <button type="submit" class="btn">تایید کردن</button>
+                                </div>
+                            </form>
+                            <div class="p-countdown" data-delay="120">
+                                <div class="p-countdown-count">
+                                    <p>لینک ارسال مجدد کد تایید در دسترس خواهد بود بعد از <strong><span
+                                                class="count-number"></span></strong> ثانیه</p>
+                                </div>
+                                <div class="p-countdown-show">
+                                    <a href="{% url 'resend' %}">ارسال مجدد کد تایید</a>
+                                </div>
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+    <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-switch/bootstrap-switch.min.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+{% include "messages.html" %}
+
+</html>

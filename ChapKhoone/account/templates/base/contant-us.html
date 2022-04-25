@@ -1,0 +1,166 @@
+{% include "base-dashboard.html" %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+    <section class="no-padding">
+
+        <div class="map" data-latitude="35.6878671" data-longitude="51.3536664" data-style="light" data-info="سلام از &lt;br&gt; چاپ آنلاین" data-height-lg="500" data-height-xs="200" data-height-sm="300"></div>
+    
+    </section>
+    
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="text-uppercase">در تماس باشید</h3>
+                <p>شادترین زمان روز!. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
+                <p>شادترین زمان روز!. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم. یک داستان واقعی که هرگز گفته نشد!. لورم ایپسوم متن ساختگی با تولید سادگی.
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی.</p>
+                <div class="row m-t-40">
+                <div class="col-lg-6">
+                    <address>
+                        <strong>شرکت پولو</strong><br>
+                                تهران، میدان آزادی<br>
+                                خیابان آزادی، پلاک 7<br>
+                                <abbr title="Phone">تلفن:</h4> 02155667788
+                    </address>
+                </div>
+                <div class="col-lg-6">
+                    <address>
+                        <strong>دفتر پولو</strong><br>
+                                تهران، میدان آزادی<br>
+                                خیابان آزادی، پلاک  7<br>
+                                 <abbr title="Phone">تلفن:</h4> 02155667788
+                     </address>
+                </div>
+            </div>
+        <div class="social-icons m-t-30 social-icons-colored">
+            <ul>
+                <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li class="social-google"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
+                <li class="social-linkedin"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <form class="widget-contact-form" novalidate action="" role="form" method="post">{% csrf_token %}
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="name">نام</label>
+                    {{ form.name|attr:"placeholder:اسم خود را وارد کنید"|attr:"aria-required:true"|attr:"type:text"|attr:"class:form-control required name"|attr:"required" }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">ایمیل</label>
+                    {{ form.email|attr:"placeholder:ایمیل خود را وارد کنید"|attr:"type:email"|attr:"class:form-control required email"|attr:"required" }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="subject">موضوع شما</label>
+                    {{ form.subject|attr:"placeholder:موضوع خود را بنویسید"|attr:"id:subject"|attr:"type:text"|attr:"class:form-control required"|attr:"required" }}
+                </div>
+            </div>
+                <div class="form-group">
+                    <label for="message">پیام</label>
+                    {{ form.message|attr:"placeholder:پیام خود را بنویسید"|attr:"rows:5"|attr:"id:message"|attr:"type:text"|attr:"class:form-control required"|attr:"required" }}
+                </div>
+                    
+                <button class="btn" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;ارسال پیام</button>
+        </form>
+    </div>
+    </div>
+    </div>
+</section> 
+
+<footer id="footer">
+    <div class="footer-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="icon-clock"></i></a>
+                        </div>
+                        <h3>روزهای کاری</h3>
+                        <p><strong>شنبه - چهارشنبه</strong>
+                            <br>10:00 صبح - 11:00 عصر</p>
+                        <p><strong>پنج شنبه - جمعه</strong>
+                            <br>10:00 صبح - 04:00 عصر</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+                        </div>
+                        <h3>موقعیت مکانی شرکت</h3>
+                        <p><strong>آدرس شرکت : </strong>
+                            <br> تهران، میدان آزادی
+                            <br> خیابان آزادی، پلاک 7
+                            <br>
+                            <br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="icon-phone"></i></a>
+                        </div>
+                        <h3>شماره تماس شرکت</h3>
+                        <p><strong>تلفن : </strong>
+                            <br> 02155667788
+                            <br> 02166554433
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="social-icons social-icons-colored float-left">
+                        <ul>
+                            <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
+                            <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                            <li class="social-gplus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="copyright-text text-center">&copy; کپی رایت 2023 <a href='bamaitc.com/'>bamaitc</a> - تمامی حقوق محفوظ است
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+
+{% endblock content %}
+
+
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap'></script>
+<script type="text/javascript" src="{% static 'plugins/gmap3/gmap3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/gmap3/map-styles.js' %}"></script>

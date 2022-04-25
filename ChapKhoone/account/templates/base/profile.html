@@ -1,0 +1,258 @@
+{% extends 'base-dashboard.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}حساب کاربری{% endblock title %}
+
+{% block breadcrumb %}
+
+<h1>پروفایل</h1>
+<nav>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item">حساب کاربری</li>
+      <li class="breadcrumb-item active">پروفایل</li>
+    </ol>
+  </nav>
+
+{% endblock breadcrumb %}
+
+{% block content %}
+
+<section class="section profile">
+    <div class="row">
+      <div class="col-xl-4">
+
+        <div class="card">
+          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+            {% if user.profile.image %}
+            <img src="/media/{{ user.profile.image }}" alt="Profile" class="rounded-circle">
+            {% else %}
+            <img src="{% static 'Dashboard-Page/assets/img/avatar-defualt.png' %}" alt="Profile" class="rounded-circle">
+            {% endif %}
+
+            <h2>{{ user.username}}</h2>
+            <h3></h3>
+            <div class="social-links mt-2">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xl-8">
+
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs nav-tabs-bordered">
+
+              <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"> اطلاعات حساب</button>
+              </li>
+
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">تغییر اطلاعات حساب</button>
+              </li>
+
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">کیف پول</button>
+              </li>
+
+
+            </ul>
+            <div class="tab-content pt-2">
+
+              <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <h5 class="card-title">بیوگرافی</h5>
+                <p class="small fst-italic">{{ user.profile.description }}</p>
+
+                <h5 class="card-title">جزییات حساب</h5>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label ">نام</div>
+                  <div class="col-lg-9 col-md-8">{{ user.profile.first_name }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">نام خانوادگی</div>
+                  <div class="col-lg-9 col-md-8">{{ user.profile.last_name }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">سن</div>
+                  <div class="col-lg-9 col-md-8">{{ user.profile.age }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">جنسیت</div>
+                  <div class="col-lg-9 col-md-8">{{ user.profile.sexuality }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">آدرس</div>
+                  <div class="col-lg-9 col-md-8">{{ user.profile.address }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">شهر</div>
+                  <div class="col-lg-9 col-md-8">{{ user.profile.city }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">شماره تلفن همراه</div>
+                  <div class="col-lg-9 col-md-8">{{ user.profile.phone }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">ایمیل</div>
+                    <div class="col-lg-9 col-md-8">{{ user.profile.email }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">نام کاربری</div>
+                    <div class="col-lg-9 col-md-8">{{ user.profile.username }}</div>
+                </div>
+
+              </div>
+
+              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                <!-- Profile Edit Form -->
+                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                  <div class="row mb-3"> 
+                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">عکس</label>
+                    <div class="col-md-8 col-lg-9">
+
+                        {% if user.profile.image %}
+                        <img src="/media/{{ user.profile.image }}" alt="Profile">
+                        {% else %}
+                        <img src="{% static 'Dashboard-Page/assets/img/avatar-defualt.png' %}" alt="Profile">
+                        {% endif %}
+
+                      <div class="pt-2">
+                        {{ form.image|attr:"id:profileImage"|attr:"class:form-control"}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">نام</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.first_name|attr:"id:fullName"|attr:"class:form-control"|attr:"type:text"}}
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="company" class="col-md-4 col-lg-3 col-form-label">نام خانوادگی</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.last_name|attr:"id:company"|attr:"class:form-control"}}
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="about" class="col-md-4 col-lg-3 col-form-label">درباره من</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.description|attr:"id:about"|attr:"class:form-control"|attr:"type:textarea"|attr:"style: 100px"}}
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">سن</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.age|attr:"id:job"|attr:"class:form-control"}}
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Country" class="col-md-4 col-lg-3 col-form-label">شهر</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.city|attr:"id:Country"|attr:"class:form-control"}}
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">آدرس</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.address|attr:"id:Address"|attr:"class:form-control"}}
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">جنسیت</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.sexuality|attr:"id:Phone"|attr:"class:form-control"}}
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">رمز عبور</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{ form.password }}
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                  </div>
+                </form><!-- End Profile Edit Form -->
+
+              </div>
+
+              <div class="tab-pane fade pt-3" id="profile-settings">
+
+                <!-- Settings Form -->
+
+                <div class="row mb-3">
+                    
+                    <div class="col-md-8 col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">موجودی</div>
+                            <div class="col-lg-9 col-md-8">{{ user.wallet.cash }}</div>
+                          </div>
+                        <hr>
+                      <div class="row">
+                        <form action="" method="post">{% csrf_token %}
+                        
+                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">شارز کیف پول</label>
+                    
+                    <br>
+                    <br>
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="floatingName" placeholder="مقدار شارژ">
+                            <label for="floatingName">مقدار شارژ</label>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">پرداخت</button>
+                  </div>
+                </form>
+                
+
+              </div>
+
+              
+            </div><!-- End Bordered Tabs -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+{% endblock content %}
+
+
+
+

@@ -1,0 +1,261 @@
+{% include 'base-dashboard.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<section id="page-content" class="p-b-0">
+    <div class="container">
+        <div class="row m-b-40">
+            <div class="sidebar sticky-sidebar col-lg-4">
+                <div class="portfolio-content" data-lightbox="gallery">
+                    <br>
+                    <a title="{{ stamp.name }}" data-lightbox="gallery-image" href="{% url 'stamp-detail' slug=stamp.slug %}">
+                        <img src="/media/{{ stamp.image }}" data-animate="fadeInUp">
+                    </a>
+                    <br><br>
+                </div>
+            </div>
+            <div class="tabs col-lg-7 offset-1">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">مشخصات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">قوانین و مقررات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                            aria-controls="contact" aria-selected="false">سفارش</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel"
+                        aria-labelledby="home-tab">
+                            <br>
+                            <h2 class="m-b-30">{{ stamp.name }}</h2>
+                            <div class="project-description">
+                                <h3>{{ stamp.description }}</h3>
+                            </div>
+                            <div class="portfolio-attributes style2">
+                                <div class="attribute"><strong>رنگ جوهر : </strong>{{ stamp.essence_color }}</div>
+                                <div class="attribute"><strong>دسته بندی : </strong> <a href="{% url 'stamp-category' slug=stamp.category.slug %}"
+                                        title="Woody Chair Brothers">{{ stamp.category }}</a></div>
+                                <div class="attribute"><strong>قیمت : </strong><h5>{{ stamp.price }}</h5></div>
+                                <div class="attribute"><strong>ابعاد )طول. عرض. ارتفاع ) : </strong>{{ stamp.length }} x {{ stamp.width }} x {{ stamp.height }} cm</div>
+                                <div class="attribute"><strong>شکل : </strong> {{ stamp.shape }}</div>
+                                <div class="attribute"><strong>درپوش : </strong> {% if stamp.is_bung %}دارد {% else %}ندارد{% endif %}</div>
+                                <div class="attribute"><strong>برند تولید کننده : </strong>{{ stamp.company_name }}</div>
+                                <div class="attribute"><strong>کشور مبدا : </strong>{{ stamp.producer_country }}</div>
+                            </div>
+                            <div class="line"></div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <h2 id="h-قوانین-و-ضوابط-ساخت-مهر">قوانین و ضوابط ساخت مهر</h2>
+
+
+                        <p style="text-align: justify;">شما در صورتی می‌توانید مهری را سفارش دهید که مالک و دارای حق ساخت آن مهر باشید. مالکیت شما برای ساخت مهر بر اساس نوع مدرک ارائه شده توسط شما مشخص خواهد شد.</p>
+                        <p><strong><span style="color: #ff0000;">مدارک لازم برای ساخت مهر:</span></strong></p>
+                        <ul>
+                        <li><strong><span style="color: #ff0000;">مهر پزشکی و پرستاری: تصویر کارت نظام پزشکی یا پرستاری (در صورتی که شماره نظام صادر شده است اما کارت تحویل داده نشده است، تصویر پروفایل سازمان نظام پزشکی یا پرستاری به همراه تصویر کارت ملی)</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">مهر مهندسی: تصویر پروانه فعالیت و یا کارت عضویت نظام مهندسی</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">مهر شرکت: در صورتی که شرکت تا این زمان دارای مهر نبوده است، تصویر اصل آگهی ثبت شرکت و یا پی دی اف دارای مهر دیجیتال قوه قضائیه به علاوه تصویر کارت ملی یکی از اعضای هیئت مدیره و در صورتی که شرکت پیش از این دارای مهر بوده است، تصویر نامه درخواست در سربرگ رسمی شرکت به همراه مهر و امضا (اسکرین شات از سایت روزنامه رسمی مورد پذیرش نمی باشد)</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">مهر وکالت: تصویر پروانه وکالت</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">مهر شخصی نام و نام خانوادگی و امضا شخصی: تصویر کارت ملی صاحب مهر</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">مهر امضا مربوط به ادارات: تصویر نامه درخواست رسمی در سربرگ سازمان مربوطه</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">ادارات دولتی و سازمان‌ها: تصویر نامه درخواست رسمی در سربرگ سازمان مربوطه با ذکر نام و کد ملی تحویل گیرنده</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">فروشگاه‌ها و مشاور املاک: تصویر جواز کسب به همراه کارت ملی صاحب جواز</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">نمایندگی بیمه‌ها، شرکت‌های داخلی، فروشگاه‌ها و برندهای داخلی: تصویر مجوز فعالیت نمایندگی به همراه تصویر کارت ملی (برای اشخاص حقیقی)</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">اینترن‌ها: تصویر کارت دانشجویی</span></strong></li>
+                        <li><strong><span style="color: #ff0000;">وبسایت‌ها و فروشگاه‌های آنلاین: تصویر یا لینک نماد الکترونیک و کارت ملی صاحب نماد</span></strong></li>
+                        </ul>
+                        <p style="text-align: justify;">بدیهی است که اگر شما مدرک مورد نیاز را ارائه ندهید و یا صحت مدراک ارائه شده توسط شما مورد تردید قرار گیرد و یا به هر نحوی شما مالک مهر شناخته نشوید، سفارش شما انجام نخواهد شد و اگر مبلغی به عنوان خرید در سایت پرداخت کرده باشید این مبلغ <em>با کسر ضرر و زیان</em> وارد شده به مهرینو به شما بازگردانده خواهد شد.</p>
+                        <p style="text-align: right;">در صورت احراز صلاحیت ساخت مهر، تمامی مسئولیت‌های حقوقی و کیفری ساخت و استفاده نادرست از مهر مربوط به سفارش دهنده می‌باشد و مهرینو هیچ گونه مسئولیتی را در این زمینه نمی‌پذیرید.</p>
+                        <p>مهرینو تعهدی در قبال حذف فاکتورهای ثبت شده نخواهد داشت. قبل از ثبت فاکتور و پرداخت نهايی فايل خود را بررسي کنيد (به لحاظ سايز،تعداد، مبلغ، زمان ساخت و…)</p>
+                        <p>پاسخگويی مهرینو با توجه به مطالب گفته شده در ضوابط و مقررات می‌باشد . لذا مطالعه اين صفحه ضروری است.</p>
+                        <p><strong>مهرهای غیرقابل ساخت:</strong></p>
+                        <ul>
+                        <li><strong>هر نوع مهری که شما صاحب و مالک معنوی آن شناخته نشوید و یا به هر نحوی هویت و صلاحیت شما توسط مهرینو احراز نگردد.</strong></li>
+                        <li><strong>تمامی مهرهایی که نام برند، شرکت و یا اشخاص حقیقی و حقوقی خارجی به هر نحوی در آن به کار برده شود.</strong></li>
+                        </ul>
+                        
+                        
+                        <h2 id="h-قوانین-و-ضوابط-تایید-طرح-نهایی-مهر">قوانین و ضوابط تایید طرح نهایی مهر</h2>
+                        
+                        
+                        
+                        <p>طرح نهایی تمام سفارشات پیش از ساخت از طریق ایمیل و یا روش‌های دیگر توسط مهرینو به سفارش دهنده ارسال می‌شود. سفارش دهنده لازم است، طرح ارسال شده را رویت و فایل pdf ارسال شده را پرینت بگیرد. این فایل ابعاد نهایی مهر روی کاغذ است. سفارش دهنده لازم است تمامی کلمات، اعداد، شکل‌ها، خطوط و اندازه‌ها را از نظر صحیح بودن و نیز املای کلمات به دقت بررسی نماید. هرگونه اشکال و اشتباه پس از تایید نهایی متوجه سفارش دهنده بوده و مهرینو هیچ‌گونه تعهدی در قبال طرح‌های تایید شده با وجود اشتباه نخواهد داشت. در صورت وجود اشتباه در طرح نهایی پس از تایید آن (حتی اگر از طرف مهرینو بوده باشد) هزینه ساخت مجدد از سفارش دهنده اخذ خواهد شد.</p>
+                        
+                        
+                        
+                        <p>ویرایش طرح نهایی ارسال شده در پنل کاربری کاربر فقط تا 3 بار رایگان بوده و پس از آن به ازای هر ویرایش بیشتر مبلغ 10000 تومان دریافت خواهد شد.</p>
+                        
+                        
+                        
+                        <h2 id="h-قوانین-و-ضوابط-ارسال-سفارشات-مهرینو"> قوانین و ضوابط ارسال سفارشات مهرینو</h2>
+                        
+                        
+                        
+                        <p>تایید طرح نهایی برای مهرهای ژلاتینی و لیزری لازم است حداقل تا ساعت 13 روز کاری قبل از ارسال سفارش توسط سفارش دهنده اعلام شود (تایید طرح در روز پنجشنبه تا ساعت 11 امکان‌پذیر است). برای مهرهای برجسته و فلزی 3 روز کاری و برای مهرهای برنجی جهت مهر و موم 5 روز کاری پیش از زمان ارسال باید انجام شود. در صورت تایید پس از زمان‌های فوق ارسال سفارش با تاخیر روبرو خواهد شد.</p>
+                        
+                        
+                        
+                        <p>سفارش دهنده لازم است آدرس خود، شامل خیابان اصلی، کوچه، پلاک، طبقه و واحد و همچنین کدپستی خود را به صورت دقیق و کامل در قسمت مربوطه یادداشت نماید. هرگونه اشتباه و برگشت سفارشات ناشی از عدم درج صحیح و همچنین کامل آدرس متوجه سفارش دهنده بوده و مهرینو تعهدی در قبال ارسال مجدد سفارش در همان روز را ندارد.</p>
+                        
+                        
+                        
+                        <p>کلیه سفارشات در مناطق 22گانه تهران توسط پیک ارسال می‌شود. تحویل سفارشات در جلوی درب اصلی ساختمان (درب کوچه یا خیابان) می‌باشد و سفارش دهنده لازم است سفارش خود را در محل فوق تحویل بگیرد. همچنین پیک با شماره تلفن همراه سفارش دهنده جهت تحویل سفارش تماس خواهد گرفت. در صورت عدم پاسخگویی و یا در دسترس نبودن تلفن همراه تحویل گیرنده، سفارش به مرکز توزیع مهرینو برگشت داده می‌شود و ارسال مجدد سفارش فقط در روزهای آتی میسر خواهد بود. مهرینو تعهدی در قبال ارسال اینگونه سفارشات در همان روز را نخواهد داشت. همچنین ارسال توسط پیک مهرینو در صورت عدم حضور در بار اول برای بار دوم در روزهای آتی امکان پذیر بوده و در صورتی که برای بار دوم نیز گیرنده در محل حضور نداشته باشد مهرینو تعهدی در قبال ارسال با پیک مهرینو برای سومین بار نداشته و سفارش دهنده لازم است خود نسبت به دریافت سفارش اقدام نماید. همچنین <span class="has-inline-color has-vivid-red-color">ارسال شهر تهران فقط در بازه تعیین شده امکان پذیر بوده و به هیچ عنوان ارسال زودتر از موعد و یا ارسال در ساعت خاص میسر نمی باشد.</span> همچنین پس از ثبت سفارش امکان تغییر ساعت و یا بازه وجود نخواهد داشت.</p>
+                        
+                        
+                        
+                        <p>سفارشات تمامی شهرها به غیر از مناطق 22گانه تهران توسط پست پیشتاز ارسال می‌شود. مهرینو کلیه سفارشات پستی را پس از تکمیل به مراکز پستی تحویل خواهد داد و شماره پیگیری پستی را از طریق پیامک به اطلاع سفارش دهنده می‌رساند. کلیه تاخیرها ناشی از عدم ارسال به موقع توسط پست متوجه مهرینو نبوده و سفارش دهنده می‌تواند با استفاده از شماره پیگیری اعلام شده از پست منطقه خود پیگیری‌های لازم را انجام دهد.<strong> زمان تقریبی رسیدن بسته های پستی مربوط به تمامی شهرها به غیر از تهران از لحظه تحویل به پست حدود 3 تا 7 روز می باشد. این زمان بسته به استان و شهر مقصد ممکن است کمتر یا بیشتر باشد و مهرینو امکان تعیین زمان دقیق را ندارد.</strong></p>
+                        
+                        
+                        
+                        <p>در صورتی که سفارش دهنده آدرس تحویل را در مکان‌های عمومی مانند بیمارستان‌ها ، مراکز خرید، ترمینال‌های مسافری، دانشگاه‌ها و سایر موارد مشابه اعلام نمایید، مهرینو تعهدی در قبال تحویل صحیح اینگونه سفارشات نخواهد داشت.</p>
+                        
+                        
+                        
+                        <p>سفارشاتی که نحوه تحویل آن‌ها «تحویل حضوری در دفتر مهرینو» انتخاب شده است فقط در دفتر مهرینو به سفارش دهنده و یا نماینده سفارش دهنده تحویل داده شده و مهرینو هیچ‌گونه تعهدی جهت ارسال آن‌ها نخواهد داشت.</p>
+                        
+                        
+                        
+                        <p><em><strong><span class="has-inline-color has-vivid-red-color">کلیه سفارشات حضوری که در دفتر مهرینو ثبت می شوند شامل هیچ کدام از قوانین و مقررات وبسایت اعم از 48 ساعت امکان تست، امکان ارسال با پیک مهرینو و سایر قوانین درج شده در وبسایت نخواهند شد و همچنین هزینه طراحی و یا فوریت به فاکتور این سفارشات اضافه خواهد شد.</span></strong></em></p>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="h4">سفارش</span>
+                                <p class="text-muted">برای تکمیل سفارش ابتدا قوانین و مقررات ساخت مهر را مطالعه نمایید سپس فایل مدارک خود را برای ما  بارگزاری نمایید</p>
+                            </div>
+                            <div class="card-body">
+                                <form method="post">{% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="username">مدارک مورد نیاز را بارگزاری کنید</label>
+                                            {{ form.evidence|attr:"type:file"|attr:"required"}}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="email">اگر نیاز به بارگزاری مدارک بیشتر دارید</label>
+                                            {{ form.evidence2|attr:"type:file"}}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-7">
+                                            <label for="name">طرح مهر خود را بارگزاری کنید</label>
+                                            {{ form.sketch_stamp|attr:"type:file"|attr:"required"}}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="gender">یادداشت سفارش</label>
+                                            {{ form.evidence|attr:"type:text"|attr:"class:form-control"}}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="telephone">نیاز به کادر دارید</label>
+                                            {{ form.is_framework}} بلی
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn m-t-30 mt-3">ثبت سفارش</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer id="footer">
+    <div class="footer-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="icon-clock"></i></a>
+                        </div>
+                        <h3>روزهای کاری</h3>
+                        <p><strong>شنبه - چهارشنبه</strong>
+                            <br>10:00 صبح - 11:00 عصر</p>
+                        <p><strong>پنج شنبه - جمعه</strong>
+                            <br>10:00 صبح - 04:00 عصر</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+                        </div>
+                        <h3>موقعیت مکانی شرکت</h3>
+                        <p><strong>آدرس شرکت : </strong>
+                            <br> تهران، میدان آزادی
+                            <br> خیابان آزادی، پلاک 7
+                            <br>
+                            <br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-box effect small clean">
+                        <div class="icon">
+                            <a href="#"><i class="icon-phone"></i></a>
+                        </div>
+                        <h3>شماره تماس شرکت</h3>
+                        <p><strong>تلفن : </strong>
+                            <br> 02155667788
+                            <br> 02166554433
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="social-icons social-icons-colored float-left">
+                        <ul>
+                            <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
+                            <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                            <li class="social-gplus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="copyright-text text-center">&copy; کپی رایت 2023 <a href='bamaitc.com/'>bamaitc</a> - تمامی حقوق محفوظ است
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
